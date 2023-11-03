@@ -57,7 +57,7 @@ const Footer = () => {
       ))}
       
     </div>
-    <div className='d-flex justify-content-center py-3 border-top' style={{background : '#dbeeff'}}>
+    <div className='d-flex justify-content-center py-3 border-top text-center' style={{background : '#dbeeff'}}>
             <h5>© 2023 Tlaidjia-Ahmed. All rights reserved.</h5>
       </div>
     </footer>

@@ -15,6 +15,11 @@
     margin: 10px 20px;
 }
 
+.services{
+    display: flex;
+}
+
+
 .cardbox:hover i{
     color: var(--mainColor) !important;
 }
@@ -26,4 +31,11 @@
 .cardbox:hover{
     background-color: var(--mainColor);
     color: #fff!important;
+}
+
+
+@media screen and (max-width : 768px){
+    .services{
+        display: block;
+    }
 }

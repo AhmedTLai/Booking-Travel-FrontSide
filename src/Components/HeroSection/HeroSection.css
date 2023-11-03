@@ -20,3 +20,12 @@
 .imagesCont:hover .img {
     scale: 1.05;
 }
+
+.homeSection{
+    display: flex;
+}
+@media screen and (max-width : 768px) {
+    .homeSection{
+        display: block;
+    }
+}

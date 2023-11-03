@@ -15,6 +15,11 @@
     margin: auto;
 }
 
+.slider div{
+    display: flex;
+    justify-content: center;
+}
+
 .slider:hover{
     cursor: grab;
 }

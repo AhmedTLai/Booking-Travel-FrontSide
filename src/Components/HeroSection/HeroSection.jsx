@@ -20,7 +20,7 @@ const heroImgs = [
 
 const HeroSection = () => {
   return (
-    <section className='container-xl py-5 my-5 d-flex gap-3 align-items-center'>
+    <section className='container-xl py-5 my-5 gap-3 align-items-center homeSection'>
 
         <article className='w-100 py-3' >
         <h4 className='py-2 px-1 bg d-inline-block fontf rounded-pill overflow-hidden'>Know Before You Go <img src="/images/world.png" alt="world" style={{maxWidth : '50px'}}/></h4>

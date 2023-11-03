@@ -2,3 +2,20 @@ form input{
     outline: none!important;
     border: none!important;
 }
+
+.news{
+    display: flex;
+    position: relative;
+}
+
+.news aside img{
+    display: block;
+}
+
+@media screen and (max-width : 768px) {
+
+    .news aside img{
+        display: none;
+    } 
+    
+}
