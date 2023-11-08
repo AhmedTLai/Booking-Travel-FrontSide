@@ -1,7 +1,30 @@
 import './login.css'
-import {Link} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
+import { AuthContext } from '../../Context/AuthContext'
+import { useContext, useState } from 'react'
+
 
 const Login = () => {
+  const {Login , err } = useContext(AuthContext)
+
+  const [input , setInput] = useState(null)
+
+  const navigate = useNavigate()
+
+  const LoginHundler = (e)=>{
+    e.preventDefault()
+    try{
+    Login(input)
+    // navigate('/')
+  }catch(err){
+    console.log(err)
+  }
+
+  }
+
+  const inputHundler = (e)=>{
+    setInput(prev => ({...prev , [e.target.name] : e.target.value}))
+  }
   return (
     <div className="container my-5  py-5">
         <div className="d-flex gap-3 my-5">
@@ -9,7 +32,7 @@ const Login = () => {
             <img src="/images/login.png" alt="loginPic" className="w-100"/>
         </aside>
 
-        <form className="py-3 bg position-relative text-white flex1 px-3 form">
+        <form onSubmit={LoginHundler} className="py-3 bg position-relative text-white flex1 px-3 form">
 
         <div className="avatar w-100 h-100  rounded-circle overflow-hidden border py-3 px-3 position-absolute bg-white">
             <i className="fa-regular fa-user w-100 h-100 fs-1 d-flex align-items-center justify-content-center" ></i>
@@ -19,9 +42,9 @@ const Login = () => {
         <br />
         <h1 className='text-center text-white'>Login</h1>
         <br />
-        <input type="email" name='email' placeholder='Enter you email ...' className='form-control'/>
+        <input onChange={inputHundler} type="email" name='email' placeholder='Enter you email ...' className='form-control'/>
         <br />
-        <input type="password" name='password' placeholder='Enter you Password ...' className='form-control'/>
+        <input onChange={inputHundler} type="password" name='password' placeholder='Enter you Password ...' className='form-control'/>
         <br />
         <button className='btn bg-dark text-light '>Login</button>
         <br />

@@ -9,6 +9,7 @@ import BookPage from './Pages/BookPage'
 import ThankYou from './Components/ThankYou/ThankYou'
 import Login from './Pages/login/Login'
 import Register from './Pages/login/Register'
+import AddTour from './Pages/AddTour'
 
 function App() {
 
@@ -23,6 +24,7 @@ function App() {
         <Route path='/thank-you' element={<ThankYou />}/>
         <Route path='/login' element={<Login />}/>
         <Route path='/register' element={<Register />}/>
+        <Route path='/add-tour' element={<AddTour />}/>
       </Routes>
       <Footer />
     </>

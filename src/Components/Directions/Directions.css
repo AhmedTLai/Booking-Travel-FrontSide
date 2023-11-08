@@ -5,6 +5,11 @@
 }
 
 
+.imgcont img{
+object-fit:fill;
+height: 270px;
+}
+
 .pages .active{
    background: var(--mainColor);
    color: #fff;

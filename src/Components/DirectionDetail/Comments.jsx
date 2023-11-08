@@ -67,7 +67,7 @@ const Comments = () => {
 
         <form className="rounded-pill overflow-hidden  comment_form"  onSubmit={submitCommentHundle} style={{padding : '3px'}}>
             <div className="d-flex  py-3 rounded-pill px-3">
-                <input type="text" className="w-100 fs-5" onChange={(e)=>{setCommentInp(e.target.value)}} placeholder="Share your thoghts"/>
+                <textarea type="text" maxLength={200} className="w-100 fs-5 textAreaC" onChange={(e)=>{setCommentInp(e.target.value)}} placeholder="Share your thoghts"/>
                 <button className="btn bg rounded-pill text-white" >Submit</button>
             </div>
         </form>

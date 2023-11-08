@@ -13,7 +13,7 @@ const BookingForm = (info) => {
   const [inputs,setInputs] = useState([])
   const [err , setErr] = useState('')
 
-const price = data.price.split('$')[1];
+const price = data?.price;
   const handlePersons = (e) => {
     const newPersons = parseInt(e.target.value, 10); // Parse the input value to an integer.
 
@@ -84,8 +84,8 @@ const price = data.price.split('$')[1];
       </button>
       <form className={`flex1 BookingForm border py-5 px-4 ${!hide ? 'hidden' : ''}`} onSubmit={bookHundler}> 
         <div className='d-flex justify-content-between align-items-center'>
-          <h2>{data.price}<span className='fs-5'> /per person</span></h2>
-          <p>{data.rate} <i className='fa-solid fa-star mainTextColor'></i></p>
+          <h2>{data?.price}$<span className='fs-5'> /per person</span></h2>
+          <p>4.5 <i className='fa-solid fa-star mainTextColor'></i></p>
         </div>
         <br />
         <br />
@@ -96,20 +96,20 @@ const price = data.price.split('$')[1];
           <input onChange={inputHundler} type="text" name='phoneNumber' placeholder='Phone' className='form-control py-3 btn text-start my-2 px-2 w-100 border-bottom' />
           <div className='d-flex my-3 gap-2'>
             <input onChange={inputHundler} type="date" name='date' className='form-control text-start btn border-bottom' />
-            <input type="number" name='persons' min='0' max='10' className='form-control btn text-start border-bottom' placeholder='Guest' onChange={handlePersons} />
+            <input type="number" name='persons' min='0' max={data?.maxGroupSize} className='form-control btn text-start border-bottom' placeholder='Guest' onChange={handlePersons} />
           </div>
         </div>
         <br />
         <br />
         <div>
           <p className='d-flex justify-content-between w-100' style={{ wordBreak: 'break-word' }}>
-            <span>{data.price} x {persons} person's</span>
+            <span>{data?.price} x {persons} person's</span>
             <span>{!summary ? 0 : summary} $</span>
           </p>
           <br />
           <p className='d-flex justify-content-between w-100'><span>Service charge</span> <span>10 $</span></p>
           <br />
-          <p className='d-flex justify-content-between w-100'><span><strong>Total</strong></span> <span>{total} $</span></p>
+          <p className='d-flex justify-content-between w-100'><span><strong>Total</strong></span> <span>{total ? total : 10} $</span></p>
         </div>
         <br />
         <p className='w-100 text-center text-danger' style={{minHeight : '30px'}}>{err ? err : ''}</p>
