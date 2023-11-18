@@ -10,6 +10,7 @@ import ThankYou from './Components/ThankYou/ThankYou'
 import Login from './Pages/login/Login'
 import Register from './Pages/login/Register'
 import AddTour from './Pages/AddTour'
+import EditTour from './Components/editTour/EditTour'
 
 function App() {
 
@@ -25,6 +26,7 @@ function App() {
         <Route path='/login' element={<Login />}/>
         <Route path='/register' element={<Register />}/>
         <Route path='/add-tour' element={<AddTour />}/>
+        <Route path='/tours/edit/:id' element={<EditTour />}/>
       </Routes>
       <Footer />
     </>

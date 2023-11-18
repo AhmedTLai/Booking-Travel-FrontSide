@@ -32,7 +32,7 @@ const price = data?.price;
   useEffect(() => {
     // Calculate Summary and Total when persons change
     
-    const summaryValue = persons * price;
+    const summaryValue = persons <= data?.maxGroupSize && persons * price ;
     const totalValue = summaryValue + 10;
 
     setSummary(summaryValue);
@@ -103,7 +103,7 @@ const price = data?.price;
         <br />
         <div>
           <p className='d-flex justify-content-between w-100' style={{ wordBreak: 'break-word' }}>
-            <span>{data?.price} x {persons} person's</span>
+            <span>{data?.price}$ x {persons} person's</span>
             <span>{!summary ? 0 : summary} $</span>
           </p>
           <br />

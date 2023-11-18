@@ -14,8 +14,10 @@ const Login = () => {
   const LoginHundler = (e)=>{
     e.preventDefault()
     try{
-    Login(input)
-    // navigate('/')
+    if(Login(input)){
+      navigate('/')
+    }
+    // 
   }catch(err){
     console.log(err)
   }

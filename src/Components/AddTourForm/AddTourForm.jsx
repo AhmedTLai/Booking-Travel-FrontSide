@@ -1,10 +1,12 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import './AddTourForm.css'
 import api from '../../assets/data/api_Url_Config'
 import { useNavigate } from 'react-router-dom'
 
 
 const AddTourForm = () => {
+
+  
 
 const [FromImg,setFormImg] = useState()
 const [photo ,setPhoto] = useState('')
@@ -57,28 +59,29 @@ const FormHundler = async (e)=>{
         <br />
         <form className="AddTourForm" onSubmit={FormHundler}>
 
-        <input type="text" name="title" className="form-control border py-3 px-3 btn " placeholder="title" onChange={inputHundler}/>
+        <input required type="text" name="title" className="form-control border py-3 px-3 btn " placeholder="title" onChange={inputHundler}/>
         <br />
         <br />
-        <input type="text" name="city" className="form-control border py-3 px-3 btn" placeholder="city" onChange={inputHundler}/>
+        <input required type="text" name="city" className="form-control border py-3 px-3 btn" placeholder="city" onChange={inputHundler}/>
         <br />
         <br />
-        <input type="number" min={0} name="price" className="form-control border py-3 px-3 btn" placeholder="price" onChange={inputHundler}/>
+        <input required type="number" min={0} name="price" className="form-control border py-3 px-3 btn" placeholder="price" onChange={inputHundler}/>
         <br />
         <br />
-        <input type="number" min={0} name="distance" className="form-control border py-3 px-3 btn" placeholder="distance" onChange={inputHundler} />
+        <input required type="number" min={0} name="distance" className="form-control border py-3 px-3 btn" placeholder="distance" onChange={inputHundler} />
         <br />
         <br />
-        <input type="number" name="maxGroupSize" className="form-control border py-3 px-3 btn" placeholder="maxGroupSize" onChange={inputHundler}/>
+        <input required type="number" name="maxGroupSize" className="form-control border py-3 px-3 btn" placeholder="maxGroupSize" onChange={inputHundler}/>
         <br />
         <br />
-        <textarea name="desc" className="form-control border py-3 px-3 btn" placeholder="desc" onChange={inputHundler}/>
+        <textarea required name="desc" className="form-control border py-3 px-3 btn" placeholder="desc" onChange={inputHundler}/>
         <br />
         <br />
         <div className='d-flex gap-3'>
-            <div className='flex1'>
-        <input type="file" name="photo" className="form-control border py-3 px-3 d-none" id="photo" onChange={FileHundler}/>
+            <div className='flex1 position-relative'>
+        <input type="file" name="photo" className="form-control border py-3 px-3 position-absolute" style={{opacity : '0', pointerEvents : 'none',top : '-50px', left : '-1000px'}} id="photo" onChange={FileHundler} required/>
         <label htmlFor="photo" className="btn bg text-white pointer-cursor">Add photo</label>
+        <p className='py-1'>{FromImg && FromImg.name ? FromImg.name : 'No file selected'}</p>
         </div>
         {photo && 
         <div className='flex1'>

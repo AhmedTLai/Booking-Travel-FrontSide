@@ -1,27 +1,27 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import DirectionCards from './DirectionCards';
 import './Directions.css';
 import { Link } from 'react-router-dom';
 import api from '../../assets/data/api_Url_Config';
+import { AuthContext } from '../../Context/AuthContext';
 
-const Directions = ({ page }) => {
+const Directions = (inf) => {
+  const {page} = inf
   const [currentPage, setCurrentPage] = useState(1);
-  const [postPerPage, setPostPerPage] = useState(6);
-  const [admin, setAdmin] = useState(true);
+  const postPerPage = 6;
   const [cards, setCards] = useState([]);
   const [data, setData] = useState([]); // Define the data state
   const pages = [];
 
+  const {currentUser} = useContext(AuthContext)
   useEffect(() => {
-    try {
+    
       api
-        .get('/tour/get-tour')
+        .get('/tour/get-tour',{withCredentials : false})
         .then((res) => setCards(res.data))
         .catch((err) => console.error(err));
-    } catch (err) {
-      console.error(err);
-    }
-  }, []);
+     
+  },[]);
 
   for (let i = 1; i <= Math.ceil(cards.length / postPerPage); i++) {
     pages.push(i);
@@ -64,7 +64,7 @@ const Directions = ({ page }) => {
           ''
         )}
       </div>
-      {admin && (
+      {currentUser?.admin && (
         <div className='position-relative py-3 w-100 d-flex justify-content-center'>
           <Link to='/add-tour' className='btn bg text-white'>
             Add tour

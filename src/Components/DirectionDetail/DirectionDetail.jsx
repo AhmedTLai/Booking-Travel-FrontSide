@@ -3,12 +3,13 @@ import { useParams } from "react-router-dom"
 import Comments from "./Comments"
 import './DirectionDetail.css'
 import BookingForm from '../BookingForm/BookingFrom'
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import api from "../../assets/data/api_Url_Config"
-
+import DirectionDetailSetings from "../DirectionDetailSeting/DirectionDetailSetings"
+import {AuthContext} from '../../Context/AuthContext'
 const DirectionDetail = () => {
 const [cards ,setCards] = useState([])
-
+const {currentUser} = useContext(AuthContext)
   useEffect(() => {
     try {
       api
@@ -22,7 +23,7 @@ const [cards ,setCards] = useState([])
 
     const {id} = useParams()
     const data = cards.find(val=> val.tour_id == id)
-    console.log(data)
+ 
 
   return (
     <div className="container py-5 d-flex gap-3">
@@ -32,16 +33,16 @@ const [cards ,setCards] = useState([])
         </div>
 
         <div className="border rounded-3 py-4 px-4">
-            <h3 className="mb-4">{data?.directionName}</h3>
+            <h3 className="mb-4">{data?.title}</h3>
             <div className="d-flex justify-content-between flex-wrap w-50">
             <p ><i className="fa-solid fa-star mainTextColor "></i>4.5(2)</p>
-            <p><i className="fa-solid fa-user border rounded-circle py-1 px-1 border-dark"></i> SomeWhere</p>
+            <p><i className="fa-solid fa-user border rounded-circle py-1 px-1 border-dark"></i> {data?.city}</p>
             </div>
             <div className="d-flex justify-content-between w-100 py-3 mb-3 gap-2 flex-wrap" style={{maxWidth : '100%'}}>
-              <p className="w-100" style={{maxWidth : '200px'}} ><i className="fa-solid flex1 fa-location-dot"></i> {data?.title}</p>
-              <p className="w-100" style={{maxWidth : '200px', position : 'relative' , left : '-50px'}} ><i className="fa-solid flex1 fa-dollar-sign border border-dark rounded-circle w-100 text-center" style={{maxWidth : '17px'}}></i> {data?.price}$ /per_person</p>
-              <p className="w-100" style={{maxWidth : '30px'}} ><i className="fa-solid flex1 fa-clock"></i> {data?.distance}</p>
-              <p className="w-100" style={{maxWidth : '30px'}} ><i className="fa-solid flex1 fa-user"></i> {data?.maxGroupSize}</p>
+              <p className="w-100" style={{maxWidth : '200px'}} ><i className="fa-solid flex1 fa-location-dot"></i> {data?.city}</p>
+              <p className="w-100 d-flex align-items-center gap-1" style={{maxWidth : '200px', position : 'relative' , left : '-50px'}} ><i className="fa-solid flex1 fa-dollar-sign border border-dark rounded-circle w-100 text-center" style={{maxWidth : '17px'}}></i> {data?.price} DZD/per_person</p>
+              <p className="w-100 d-flex align-items-center gap-1" style={{maxWidth : '30px'}} ><i className="fa-solid flex1 fa-clock"></i> {data?.distance}</p>
+              <p className="w-100 d-flex align-items-center gap-1" style={{maxWidth : '30px'}} ><i className="fa-solid flex1 fa-user"></i> {data?.maxGroupSize}</p>
             </div>
             <div>
               <h3 className="d-inline-flex mb-3">Description</h3>
@@ -52,6 +53,7 @@ const [cards ,setCards] = useState([])
         <Comments />
         </div>
         <BookingForm data={data}/>
+        {currentUser?.admin && <DirectionDetailSetings />}
     </div>
   )
 }

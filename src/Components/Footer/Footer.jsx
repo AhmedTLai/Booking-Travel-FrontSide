@@ -23,7 +23,7 @@ const Footer = () => {
     <footer>
     <div className='container py-5 d-flex flex-wrap gap-3 border-top'>
       <div className='flex1 border-end'>
-      <Link className="border-0" to="/">
+      <Link className="border-0"  to="/">
       <img src="/images/logo.png" alt="LOGO" className="w-100 mb-4 logo" />
     </Link>
     <p>Lorem, ipsum dolor sit amet consectetur adipisicing.</p>

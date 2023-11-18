@@ -1,9 +1,12 @@
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import './Navbar.css'
 import { NavLink , Link } from 'react-router-dom'
-
+import {AuthContext} from '../../Context/AuthContext';
+import api from '../../assets/data/api_Url_Config';
 const Navbar = () => {
   const [position, setPosition] = useState(false);
+
+  const {currentUser} = useContext(AuthContext)
 
   const NavbarScrollHandler = () => {
     if (window.scrollY > 50) {
@@ -23,6 +26,16 @@ const Navbar = () => {
   }, []);
 
    
+  const Logout = async()=>{
+    const logoutP = await api.post('/user/logout')
+    if(logoutP){
+      localStorage.removeItem('Auth_token');
+      location.reload()
+    }else{
+      console.log('the user is not loged in')
+    }
+    
+  }
 
 
   return (
@@ -59,14 +72,31 @@ const Navbar = () => {
         </li>
       </ul>
       
-      <div className="d-flex gap-3 btns">
+      {
+        !currentUser ?
+        <div className="d-flex gap-3 btns">
         <Link to="/login" className="btn rounded-pill">
           Login
         </Link>
         <Link to="/register" className="btn rounded-pill reg">
           Register
         </Link>
+        
       </div>
+      :
+      <div className='d-flex mx-auto justify-content-center  py-1 px-1'>
+        <div className="dropdown open  ">
+        <button className="btn bg text-white dropdown-toggle" type="button" id="triggerId" data-bs-toggle="dropdown" aria-haspopup="true"
+            aria-expanded="false">
+              {currentUser.fullname}
+            </button>
+        <div className="dropdown-menu" aria-labelledby="triggerId">
+          <button className="dropdown-item" href="#" onClick={Logout}><i className='fa-solid fa-circle-xmark mainTextColor'></i> Logout</button>
+          <button className="dropdown-item" href="#"><i className='fa-solid fa-gear mainTextColor'></i> Profile Settings</button>
+        </div>
+      </div>
+      </div>
+      }
     </div>
   </div>
 </nav>
